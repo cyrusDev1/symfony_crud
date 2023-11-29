@@ -1,0 +1,32 @@
+# Dossiers à ignorer
+/var/
+/vendor/
+/bin/
+/node_modules/
+
+# Fichiers à ignorer
+/.env
+/.env.local
+/.phpunit.result.cache
+/php-cs-fixer.cache
+/public/bundles/
+/public/build/
+/public/uploads/
+/public/index.php
+/public/robots.txt
+
+# Fichiers de configuration locaux
+/.phpstorm.meta.php
+/.phpstorm.meta.php.backup
+/.phpstorm.meta.php.bak
+/.idea/
+/.vscode/
+/.DS_Store
+
+# Fichiers de logs et de cache
+/var/cache/
+/var/log/
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
