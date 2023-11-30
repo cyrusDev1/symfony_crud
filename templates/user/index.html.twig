@@ -3,6 +3,8 @@
 {% block body %}
 <div class="mx-auto mt-16 max-w-5xl sm:mt-20">
 <a href="{{ path('add_user') }}" class="text-white bg-indigo-600 px-3.5 py-2.5">To create new user</a>
+<a href="{{ path('admin_logout') }}" class="text-white bg-red-300 px-3.5 py-2.5">Logout</a>
+
 <table class="border-collapse border border-slate-400 my-4">
   <thead>
     <tr>
@@ -15,7 +17,6 @@
       <th class="border border-slate-300 p-2">Gender</th>
       <th class="border border-slate-300 p-2">Edit</th>
       <th class="border border-slate-300 p-2">Delete</th>
-
     </tr>
   </thead>
   <tbody>
@@ -25,8 +26,8 @@
       <td class="border border-slate-300 p-2">{{ user.firstname }}</td>
       <td class="border border-slate-300 p-2">{{ user.lastname }}</td>
       <td class="border border-slate-300 p-2">{{ user.email }}</td>
-      <td class="border border-slate-300 p-2">{{ user.email }}</td>
       <td class="border border-slate-300 p-2">{{ user.address }}</td>
+            <td class="border border-slate-300 p-2">{{ user.phone }}</td>
       <td class="border border-slate-300 p-2">{{ user.sexe }}</td>
       <td class="border border-slate-300 p-2"><a class="bg-sky-500 text-white p-2" href="{{ path('edit_user', {'id': user.id}) }}">Edit<a/></td>
       <td class="border border-slate-300 p-2"><a class="bg-red-500 text-white p-2" href="{{ path('delete_user', {'id': user.id}) }}">Delete<a/></td>
