@@ -6,26 +6,30 @@
 <table class="border-collapse border border-slate-400 my-4">
   <thead>
     <tr>
-        <th class="border border-slate-300 p-2">    ID</th>
+        <th class="border border-slate-300 p-2">ID</th>
       <th class="border border-slate-300 p-2">First Name</th>
       <th class="border border-slate-300 p-2">Last Name</th>
       <th class="border border-slate-300 p-2">Email</th>
       <th class="border border-slate-300 p-2">Address</th>
       <th class="border border-slate-300 p-2">Phone</th>
       <th class="border border-slate-300 p-2">Gender</th>
+      <th class="border border-slate-300 p-2">Edit</th>
+      <th class="border border-slate-300 p-2">Delete</th>
+
     </tr>
   </thead>
   <tbody>
   {% for user in users %}
     <tr>
-          <td class="border border-slate-300 p-2">{{ user.id }}</td>
-
+      <td class="border border-slate-300 p-2">{{ user.id }}</td>
       <td class="border border-slate-300 p-2">{{ user.firstname }}</td>
       <td class="border border-slate-300 p-2">{{ user.lastname }}</td>
-        <td class="border border-slate-300 p-2">{{ user.email }}</td>
       <td class="border border-slate-300 p-2">{{ user.email }}</td>
-        <td class="border border-slate-300 p-2">{{ user.address }}</td>
+      <td class="border border-slate-300 p-2">{{ user.email }}</td>
+      <td class="border border-slate-300 p-2">{{ user.address }}</td>
       <td class="border border-slate-300 p-2">{{ user.sexe }}</td>
+      <td class="border border-slate-300 p-2"><a class="bg-sky-500 text-white p-2" href="{{ path('edit_user', {'id': user.id}) }}">Edit<a/></td>
+      <td class="border border-slate-300 p-2"><a class="bg-red-500 text-white p-2" href="{{ path('delete_user', {'id': user.id}) }}">Delete<a/></td>
     </tr>
     {% endfor %}
   </tbody>

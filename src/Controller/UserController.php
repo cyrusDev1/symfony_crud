@@ -27,11 +27,14 @@ class UserController extends AbstractController
 
     /**
      * @Route("user/new", name="add_user")
+     * @Route("user/{id}/edit", name="edit_user")
      */
 
-    public function adduser(Request $request, EntityManagerInterface $manager): Response
+    public function form(User $user = null, Request $request, EntityManagerInterface $manager): Response
     {
-        $user = new User();
+        if(!$user){
+            $user = new User();
+        }
         $form = $this->createFormBuilder($user)
                      ->add('firstname', TextType::class)
                      ->add('lastname', TextType::class)
@@ -46,17 +49,30 @@ class UserController extends AbstractController
                      ])->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setCreatedAt(new \DateTimeImmutable());
+            if (!$user->getId()) {
+                $user->setCreatedAt(new \DateTimeImmutable());
+            }
             $user->setUpdatedAt(new \DateTimeImmutable());
 
             $manager->persist($user);
             $manager->flush();
             return $this->redirectToRoute('home');
             dump($user);
-
         }
         return $this->render('user/form.html.twig', [
-            "userForm" => $form->createView()
+            "userForm" => $form->createView(),
+            "editMode" => $user->getId() !== null
         ]);
+    }
+
+
+    /**
+     *@Route("/user/delete/{id}", name="delete_user")
+     */
+    public function deleteUser(User $user, EntityManagerInterface $manager): Response
+    {
+        $manager->remove($user);
+        $manager->flush();
+        return $this->redirectToRoute('home');
     }
 }
